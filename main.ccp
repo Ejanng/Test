@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <string.h>
-#include <conio.h>
-//#include <windows.h> //Hindi gumagana sa android
-#include <stdlib.h>
-#include <time.h>
+#include <string.h> //string
+#include <conio.h> //getch
+#include <windows.h> //Hindi gumagana sa android
+#include <stdlib.h> //
+#include <time.h> //delay
 void login() {
     int loginAttempts = 0;
     int i = 0;

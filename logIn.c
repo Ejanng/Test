@@ -67,65 +67,13 @@ void login() {
     system("cls");
 }
 
-
-int main() {
-    login();
-    time_t currentTime;
-    time(&currentTime);
-
-    int choice;
-    
-    printf("\n\n\t:::::::::::::::::::::::::::::::::::\n");
-
-    printf("\t:STUDENT SAVING  MANAGEMENT SYSTEM:\n");
-
-    printf("\t:::::::::::::::::::::::::::::::::::");
-
-     while (1) {
-        printf("\n\n\t\t:MAIN MENU:");
-        printf("\n\n\tPress <1> To ADD RECORD\t");
-        printf("\n\tPress <2> To VIEW RECORDS\t");
-        printf("\n\tPress <3> To EDIT RECORDS\t");
-        printf("\n\tPress <4> To DELETE RECORD\t");
-        printf("\n\tPress <5> To BALANCE STATUS\t");
-        printf("\n\tPress <6> To EXIT\t\t");
-        
-        printf("\n\n\tCurrent date and time: %s", ctime(&currentTime));
-
-        printf("\n\n\tENTER YOUR CHOICE:");
-        scanf("%d", &choice);
-
-
-        switch (choice)
-        {
-        case 1:
-            addrecord();
-            break;
-        case 2: 
-            viewrecords();
-        case 3: 
-            editrecord();
-        case 4: 
-            deleterecord();
-        case 5: 
-            balancestatus();
-        
-        case 6: 
-            getch();
-            break;
-        }
-                system("cls");
-}
-    return 0;
-}
-
 void addrecord(){
     system("cls");
     FILE *ar ;
     char filename[15] = "records.txt";
     int choice; 
     char another = 'Y';
-     struct Record record;
+    struct Record record;
     
 
 
@@ -210,15 +158,69 @@ system("cls");
 
     fclose(ar);
 }
-void editrecord(){
+//void editrecord(){
      
-}
+//}
 
-void deleterecord(){
+//void deleterecord(){
  
-}
+//}
 
-void balancestatus(){
+//void balancestatus(){
     
-}
+//}
 
+int main() {
+    login();
+    time_t currentTime;
+    time(&currentTime);
+
+    int choice;
+    
+    printf("\n\n\t:::::::::::::::::::::::::::::::::::\n");
+
+    printf("\t:STUDENT SAVING  MANAGEMENT SYSTEM:\n");
+
+    printf("\t:::::::::::::::::::::::::::::::::::");
+
+    
+    printf("\n\n\t\t:MAIN MENU:");
+    printf("\n\n\tPress <1> To ADD RECORD\t");
+    printf("\n\tPress <2> To VIEW RECORDS\t");
+    printf("\n\tPress <3> To EDIT RECORDS\t");
+    printf("\n\tPress <4> To DELETE RECORD\t");
+    printf("\n\tPress <5> To BALANCE STATUS\t");
+    printf("\n\tPress <6> To EXIT\t\t");
+
+    printf("\n\n\tCurrent date and time: %s", ctime(&currentTime));
+
+    printf("\n\n\tENTER YOUR CHOICE:");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1:
+            addrecord();
+            break;
+        case 2: 
+            viewrecords();
+            break;
+        case 3: 
+            // editrecord();
+            break;
+        case 4: 
+            // deleterecord();
+            break;
+        case 5: 
+            // balancestatus();
+            break;
+        case 6: 
+            // exit or any necessary code
+            break;
+        default:
+            printf("\nInvalid choice! Please enter a number between 1 and 6.\n");
+    }
+    system("cls");
+
+    return 0;
+}
+    

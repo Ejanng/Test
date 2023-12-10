@@ -2,7 +2,6 @@
 #include <string.h>
 #include <conio.h>
 #include <windows.h>
-#include <time.h>
 
 struct Record {
     char date[15];
@@ -25,8 +24,7 @@ void login();
 
 int main() {
     login();
-    time_t currentTime;
-    time(&currentTime);
+    system("cls");
 
     int choice;
     struct BankSystem bank = {0, 0};
@@ -38,8 +36,6 @@ int main() {
         printf("\n\tPress <3> To SPEND\t");
         printf("\n\tPress <4> To BALANCE STATUS\t");
         printf("\n\tPress <5> To EXIT\t\t");
-
-
 
         printf("\n\n\tENTER YOUR CHOICE:");
         scanf("%d", &choice);
@@ -64,6 +60,7 @@ int main() {
         default:
             printf("\nInvalid choice. Please enter a number between 1 and 5.\n");
         }
+
         system("cls");
     }
 
@@ -71,12 +68,14 @@ int main() {
 }
 
 void addrecord(struct BankSystem *bank) {
+    char another = 'Y';
     system("cls");
 
     printf("\n\n\t\t:::::::::::::::::::::::::::\n");
     printf("\t\t: WELCOME TO ADD RECORDS :");
     printf("\n\t\t:::::::::::::::::::::::::::\n\n");
 
+    while(another == 'Y'|| another == 'y'){
     if (bank->transactionCount < 100) {
         printf("Enter date (e.g., DD/MM/YYYY): ");
         scanf("%s", (*bank).transaction[bank->transactionCount].date);
@@ -90,10 +89,15 @@ void addrecord(struct BankSystem *bank) {
         bank->balance += bank->transaction[bank->transactionCount].amount;
         bank->transactionCount++;
 
-        printf("Record added successfully.\n");
     } else {
         printf("Transaction limit reached. Cannot add more records.\n");
+        break;
     }
+        printf("\n\tDO YOU WANT TO ADD ANOTHER RECORD...(Y/N) ");
+        fflush(stdin);  
+        scanf(" %c", &another);
+    }
+		printf("Press the Enter Key....");
 
     getch();
 }
@@ -138,15 +142,26 @@ void spend(struct BankSystem *bank) {
     } else {
         printf("Enter description for spending: ");
         scanf("%s", bank->transaction[bank->transactionCount].description);
+        printf("\n Transaction successful.\n You spent %.2f for %s. \n %s New balance: %.2f\n", spentAmount, bank->transaction[bank->transactionCount].description,bank->transaction, bank->balance - spentAmount);
 
-        printf("Transaction successful.\n You spent %.2f for %s.\n %s New balance: %.2f\n", spentAmount, bank->transaction[bank->transactionCount].description,bank->transaction, bank->balance - spentAmount);
         bank->balance -= spentAmount;
         bank->transaction[bank->transactionCount].amount = -spentAmount;
         strcpy(bank->transaction[bank->transactionCount].date, "SPEND");
         bank->transactionCount++;
 
+
+
+
         printf("Money spent successfully.\n");
-        
+
+        for ( s = 0; s < bank->transactionCount;s++)
+        {
+             printf("%-15s%-25s$%-10.2f\n",
+                   bank->transaction[s].amount,
+                   bank->transaction[s].description,
+                   bank->transaction[s].spentAmount);
+        }
+
     }
 
     getch();

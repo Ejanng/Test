@@ -154,13 +154,13 @@ void spend(struct BankSystem *bank) {
 
         printf("Money spent successfully.\n");
 
-        for ( s = 0; s < bank->transactionCount;s++)
-        {
-             printf("%-15s%-25s$%-10.2f\n",
-                   bank->transaction[s].amount,
-                   bank->transaction[s].description,
-                   bank->transaction[s].spentAmount);
-        }
+ //       for ( s = 0; s < bank->transactionCount;s++)
+ //       {
+ //            printf("%-15s%-25s$%-10.2f\n",
+ //                  bank->transaction[s].amount,
+ //                  bank->transaction[s].description,
+ //                  bank->transaction[s].spentAmount);
+ //       }
 
     }
 
